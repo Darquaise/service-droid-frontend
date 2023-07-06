@@ -17,23 +17,23 @@ import {AppComponent} from './app.component';
 // soon to be added
 
 const routes: Routes = [
-    {path: '', component: AppComponent}
+  {path: '', component: AppComponent}
 ]
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        RouterModule.forRoot(routes),
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        NgOptimizedImage
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgOptimizedImage
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
