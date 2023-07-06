@@ -1,0 +1,9 @@
+.data-group {
+  @apply flex flex-col items-center w-160 h-112 p-4 bg-red-400 rounded-3xl;
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  div {
+    @apply grow w-128 h-max bg-emerald-500 rounded-xl;
+  }
+}

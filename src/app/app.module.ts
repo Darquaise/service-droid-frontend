@@ -27,25 +27,28 @@ import {GuildComponent} from './dash/sidebar/guild/guild.component';
 import {OptionalComponent} from './dash/sidebar/optional/optional.component';
 import {GuildContainerComponent} from './dash/guild-container/guild-container.component';
 
+import {OverviewComponent} from './dash/guild-container/overview/overview.component';
+import {SettingsComponent} from './dash/guild-container/settings/settings.component';
+import {StatisticsComponent} from './dash/guild-container/statistics/statistics.component';
+
 /* Services */
 import {ApiService} from "./api.service";
-
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'callback', component: CallbackComponent},
   {path: 'dashboard', component: DashComponent},
-  /*{
+  {
     path: 'dashboard/:id',
-    component: DashboardComponent,
+    component: DashComponent,
     children: [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: OverviewComponent},
       {path: 'settings', component: SettingsComponent},
       {path: 'statistics', component: StatisticsComponent}
     ]
-  },*/
+  },
   {path: '**', component: NotFoundComponent},
 ]
 
@@ -62,6 +65,9 @@ const routes: Routes = [
     GuildComponent,
     OptionalComponent,
     GuildContainerComponent,
+    OverviewComponent,
+    SettingsComponent,
+    StatisticsComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
