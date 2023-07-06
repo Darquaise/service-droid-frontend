@@ -17,8 +17,8 @@ export type rawPartialGuild = {
 }
 
 export type rawPartialGuildsGroup = {
-  availableGuilds: rawPartialGuild;
-  optionalGuilds: rawPartialGuild;
+  availableGuilds: rawPartialGuild[];
+  optionalGuilds: rawPartialGuild[];
 }
 
 export type rawUser = {
@@ -61,7 +61,7 @@ export class PartialGuild {
   }
 }
 
-export class PartialUser {
+export class User {
   id: bigint;
   name: string;
   avatar: string;
@@ -76,8 +76,8 @@ export class PartialUser {
     this.accent_color = data.accent_color;
   }
 
-  static createEmpty(): PartialUser {
-    return new PartialUser(
+  static createEmpty(): User {
+    return new User(
       {id: '0', username: "", avatar: "", banner: "", accent_color: 0}
     );
   }
