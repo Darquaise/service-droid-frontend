@@ -89,3 +89,6 @@ export class User {
     return this.avatar + '?size=' + res;
   }
 }
+
+/* other */
+export type subType = 0 | 1 | 2 | 3

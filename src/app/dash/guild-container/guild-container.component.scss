@@ -1,0 +1,9 @@
+:host {
+  height: 100%;
+  display: grid;
+  grid-template-rows: var(--h-sub-header) 0 calc(100vh - var(--h-header) - var(--h-sub-header) - 0.5rem);
+}
+
+.page {
+  @apply text-3xl font-bold mx-28 my-auto;
+}

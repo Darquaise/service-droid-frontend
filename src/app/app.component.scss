@@ -1,0 +1,11 @@
+.main-container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: var(--h-header) 0 calc(100vh - var(--h-header));
+}
+
+.header-container {
+  @apply bg-white shadow-lg;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}

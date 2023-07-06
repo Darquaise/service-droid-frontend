@@ -1,0 +1,4 @@
+.dashboard-container {
+  @apply grid pt-2 h-full;
+  grid-template-columns: 15rem 1fr;
+}

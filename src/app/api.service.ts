@@ -1,4 +1,4 @@
-import {Injectable, OnDestroy, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, take} from "rxjs";
 import {PartialGuild, linkData, wasSuccessful, rawUser, rawPartialGuildsGroup, User} from "./types";

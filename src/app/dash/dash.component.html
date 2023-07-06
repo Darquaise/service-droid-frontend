@@ -1,0 +1,5 @@
+<div class="dashboard-container">
+  <app-sidebar [selectedGuild]="selectedGuild"></app-sidebar>
+  <app-guild-container *ngIf="selectedGuild" [selectedGuild]="selectedGuild"></app-guild-container>
+  <p *ngIf="!selectedGuild">Select a guild</p>
+</div>
