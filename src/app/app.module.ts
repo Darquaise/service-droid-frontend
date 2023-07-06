@@ -74,9 +74,9 @@ const routes: Routes = [
     TooltipModule,
   ],
   providers: [
-    ApiService
+    ApiService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,]
 })
 export class AppModule {
 }
