@@ -8,13 +8,18 @@ import {PartialGuild, linkData, wasSuccessful, rawUser, rawPartialGuildsGroup, U
 })
 export class ApiService {
   private isAuthorized: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private user: BehaviorSubject<User> = new BehaviorSubject<User>(User.createEmpty())
+  private authCheckDone: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  private user: BehaviorSubject<User> = new BehaviorSubject<User>(User.createEmpty());
   private availableGuilds: BehaviorSubject<PartialGuild[]> = new BehaviorSubject<PartialGuild[]>([]);
   private optionalGuilds: BehaviorSubject<PartialGuild[]> = new BehaviorSubject<PartialGuild[]>([]);
 
   constructor(private http: HttpClient) {
     this.fetchIsAuthenticated().pipe()
-      .subscribe(data => this.isAuthorized.next(data.successful));
+      .subscribe(data => {
+        this.isAuthorized.next(data.successful)
+        this.authCheckDone.next(true)
+      });
 
     this.fetchUserInfo().pipe()
       .subscribe(data => this.user.next(new User(data)));
