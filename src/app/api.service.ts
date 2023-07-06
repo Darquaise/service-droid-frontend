@@ -26,17 +26,8 @@ export class ApiService {
 
     this.fetchUserGuilds().pipe()
       .subscribe(data => {
-        const newAvailable: PartialGuild[] = data.availableGuilds.map(guild => new PartialGuild(guild));
-        const newOptional: PartialGuild[] = data.optionalGuilds.map(guild => new PartialGuild(guild));
-
-        if (this.checkDiff(this.availableGuilds.getValue(), newAvailable)) {
-          this.availableGuilds.next(newAvailable);
-        }
-
-        if (this.checkDiff(this.optionalGuilds.getValue(), newOptional)) {
-          this.optionalGuilds.next(newOptional);
-        }
-
+        this.availableGuilds.next(data.availableGuilds.map(guild => new PartialGuild(guild)));
+        this.optionalGuilds.next(data.optionalGuilds.map(guild => new PartialGuild(guild)));
       });
   }
 
@@ -61,10 +52,6 @@ export class ApiService {
 
   private fetchUserGuilds(): Observable<rawPartialGuildsGroup> {
     return this.http.get<rawPartialGuildsGroup>('/api/user/guilds', {withCredentials: true})
-  }
-
-  private checkDiff(oldG: PartialGuild[], newG: PartialGuild[]): boolean {
-    return oldG.map(g => g.id).sort().join(',') === newG.map(g => g.id).sort().join(',');
   }
 
   isAuthenticated(): Observable<boolean> {
