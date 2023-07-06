@@ -23,6 +23,8 @@ import {HomeComponent} from './home/home.component';
 /* Components: Dashboard */
 import {DashComponent} from './dash/dash.component';
 import {SidebarComponent} from './dash/sidebar/sidebar.component';
+import {GuildComponent} from './dash/sidebar/guild/guild.component';
+import {OptionalComponent} from './dash/sidebar/optional/optional.component';
 import {GuildContainerComponent} from './dash/guild-container/guild-container.component';
 
 /* Services */
@@ -57,7 +59,9 @@ const routes: Routes = [
     /* Dashboard */
     DashComponent,
     SidebarComponent,
-    GuildContainerComponent
+    GuildComponent,
+    OptionalComponent,
+    GuildContainerComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

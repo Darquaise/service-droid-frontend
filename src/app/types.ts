@@ -11,6 +11,7 @@ export type rawPartialGuild = {
   id: string;
   name: string;
   icon: string;
+  textIcon: string;
   isOwner: boolean;
   permissions: string;
   invite: string;
@@ -34,6 +35,7 @@ export class PartialGuild {
   id: bigint;
   name: string;
   icon: string;
+  textIcon: string;
   isOwner: boolean;
   permissions: bigint;
   invite: string;
@@ -42,6 +44,7 @@ export class PartialGuild {
     this.id = BigInt(data.id);
     this.name = data.name;
     this.icon = data.icon;
+    this.textIcon = data.textIcon;
     this.isOwner = data.isOwner;
     this.permissions = BigInt(data.permissions);
     this.invite = data.invite;
@@ -49,7 +52,7 @@ export class PartialGuild {
 
   static createEmpty(): PartialGuild {
     return new PartialGuild(
-      {id: '0', name: "", icon: "", isOwner: false, permissions: '0', invite: ''}
+      {id: '0', name: "", icon: "", textIcon: "None", isOwner: false, permissions: '0', invite: ''}
     );
   }
 

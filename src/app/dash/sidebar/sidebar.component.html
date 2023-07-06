@@ -1,1 +1,13 @@
-<p>sidebar works!</p>
+<div class="grid auto-rows-min h-full ml-2 overflow-y-auto hide-scroll">
+  <app-guild
+    *ngFor="let guild of availableGuilds;"
+    [guild]="guild"
+    [routerLink]="'/dashboard/' + guild.id"
+    [ngClass]="'sidebar-guild' + (guild.id === selectedGuild ? '' : ' rounded-r-2xl mr-2')"
+  ></app-guild>
+  <br>
+  <button (click)="show()" class="sidebar-guild rounded-r-2xl mr-2">
+    <i class="pi pi-plus pl-6 pr-8" style="font-size: 1.5rem"></i>
+    <p class="text-xl font-medium">Add More</p>
+  </button>
+</div>

@@ -1,0 +1,8 @@
+<img *ngIf="guild.icon"
+     [ngSrc]="guild.sizedIcon(64)" width="40" height="40"
+     class="w-16 h-16 rounded-2xl"
+>
+<p *ngIf="!guild.icon"
+   class="w-16 h-16 pt-3 text-2xl font-bold text-center bg-stone-400 rounded-2xl"
+>{{ guild.textIcon }}</p>
+<p class="w-full pl-4 pr-2 text-center text-xl">{{ guild.name }}</p>

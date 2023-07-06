@@ -1,0 +1,14 @@
+<div
+  class="grid grid-rows-[repeat(var(--rows),minmax(0,1fr))] grid-flow-col gap-4 m-20"
+  [style]="'--rows: ' + rows"
+>
+  <a *ngFor="let guild of guilds" [href]="guild.invite">
+    <img *ngIf="guild.icon"
+         [ngSrc]="guild.sizedIcon(128)" width="100" height="100"
+         class="w-24 h-24 rounded-2xl" [pTooltip]="guild.name"
+    >
+    <p *ngIf="!guild.icon"
+       class="w-24 h-24 pt-8 text-2xl font-bold text-black text-center bg-stone-400 rounded-2xl" [pTooltip]="guild.name"
+    >{{ guild.textIcon }}</p>
+  </a>
+</div>
