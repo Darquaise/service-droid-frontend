@@ -8,7 +8,10 @@ import {NgOptimizedImage} from "@angular/common";
 import {AppRoutingModule} from './app-routing.module';
 
 /* PrimeNG Modules */
-// soon to be added
+import {TabViewModule} from "primeng/tabview";
+import {DynamicDialogModule} from "primeng/dynamicdialog";
+import {TooltipModule} from "primeng/tooltip";
+import {ToastModule} from "primeng/toast";
 
 /* Components */
 import {AppComponent} from './app.component';
@@ -62,7 +65,13 @@ const routes: Routes = [
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+
+    /* PrimeNG */
+    TabViewModule,
+    DynamicDialogModule,
+    ToastModule,
+    TooltipModule,
   ],
   providers: [
     ApiService
