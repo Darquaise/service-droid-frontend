@@ -6,18 +6,13 @@ import {PartialGuild, linkData, wasSuccessful, rawUser, rawPartialGuildsGroup, U
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService implements OnInit, OnDestroy {
-  private readonly URL: string = 'http://localhost:8000/api/';
-
+export class ApiService {
   private isAuthorized: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private user: BehaviorSubject<User> = new BehaviorSubject<User>(User.createEmpty())
   private availableGuilds: BehaviorSubject<PartialGuild[]> = new BehaviorSubject<PartialGuild[]>([]);
   private optionalGuilds: BehaviorSubject<PartialGuild[]> = new BehaviorSubject<PartialGuild[]>([]);
 
   constructor(private http: HttpClient) {
-  }
-
-  ngOnInit() {
     this.fetchIsAuthenticated().pipe()
       .subscribe(data => this.isAuthorized.next(data.successful));
 
@@ -40,30 +35,27 @@ export class ApiService implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-  }
-
   /* without authentication */
   getLoginLink(): Observable<linkData> {
-    return this.http.get<linkData>(this.URL + 'login_link');
+    return this.http.get<linkData>('/api/login_link', {withCredentials: true});
   }
 
   redeemCode(code: string): void {
-    this.http.get<wasSuccessful>(this.URL + 'callback?code=' + code).pipe(take(1))
+    this.http.get<wasSuccessful>('/api/callback?code=' + code, {withCredentials: true}).pipe(take(1))
       .subscribe(data => this.isAuthorized.next(data.successful));
   }
 
   /* with authentication */
   private fetchIsAuthenticated(): Observable<wasSuccessful> {
-    return this.http.get<wasSuccessful>(this.URL + 'authenticated');
+    return this.http.get<wasSuccessful>('/api/authenticated', {withCredentials: true});
   }
 
   private fetchUserInfo(): Observable<rawUser> {
-    return this.http.get<rawUser>(this.URL + 'user')
+    return this.http.get<rawUser>('/api/user', {withCredentials: true})
   }
 
   private fetchUserGuilds(): Observable<rawPartialGuildsGroup> {
-    return this.http.get<rawPartialGuildsGroup>(this.URL + 'user/guilds')
+    return this.http.get<rawPartialGuildsGroup>('/api/user/guilds', {withCredentials: true})
   }
 
   private checkDiff(oldG: PartialGuild[], newG: PartialGuild[]): boolean {
