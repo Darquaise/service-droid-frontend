@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef} from '@angular/core';
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {PartialGuild} from "../../types";
 import {ApiService} from "../../api.service";
@@ -12,7 +12,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./sidebar.component.scss'],
   providers: [DialogService]
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() selectedGuild: bigint = 0n;
 
   availableGuilds: PartialGuild[] = [];
@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   sOGuilds: Subscription = new Subscription();
 
 
-  constructor(private api: ApiService, private router: Router, private route: ActivatedRoute, private dialogService: DialogService) {
+  constructor(private api: ApiService, private router: Router, private route: ActivatedRoute, private dialogService: DialogService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -43,6 +43,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.sRouter.unsubscribe();
     this.sGuilds.unsubscribe();
     this.sOGuilds.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.cd.detectChanges();
   }
 
   show() {

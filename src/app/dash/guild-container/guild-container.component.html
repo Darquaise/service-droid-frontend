@@ -1,6 +1,6 @@
 <div class="flex justify-center mt-4">
-  <a routerLink="overview" [class]="'page' + (subSelection === 1 ? ' underline' : '')">Overview</a>
-  <a routerLink="settings" [class]="'page' + (subSelection === 2 ? ' underline' : '')">Settings</a>
-  <a routerLink="statistics" [class]="'page' + (subSelection === 3 ? ' underline' : '')">Statistics</a>
+  <a routerLink="overview" class="page" [ngClass]="{'underline': subSelection === 1}">Overview</a>
+  <a routerLink="settings" class="page" [ngClass]="{'underline': subSelection === 2}">Settings</a>
+  <a routerLink="statistics" class="page" [ngClass]="{'underline': subSelection === 3}">Statistics</a>
 </div>
 <router-outlet></router-outlet>

@@ -3,7 +3,8 @@
     *ngFor="let guild of availableGuilds;"
     [guild]="guild"
     [routerLink]="'/dashboard/' + guild.id"
-    [ngClass]="'sidebar-guild' + (guild.id === selectedGuild ? '' : ' rounded-r-2xl mr-2')"
+    class="sidebar-guild"
+    [ngClass]="{'rounded-r-2xl mr-2': guild.id !== selectedGuild}"
   ></app-guild>
   <br>
   <button (click)="show()" class="sidebar-guild rounded-r-2xl mr-2">

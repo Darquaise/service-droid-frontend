@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef} from '@angular/core';
 import {Subscription} from "rxjs";
 import {UiService} from "../../ui.service";
 import {subType} from "../../types";
@@ -8,13 +8,13 @@ import {subType} from "../../types";
   templateUrl: './guild-container.component.html',
   styleUrls: ['./guild-container.component.scss']
 })
-export class GuildContainerComponent implements OnInit, OnDestroy {
+export class GuildContainerComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() selectedGuild: bigint = 0n;
   subSelection: subType = 0;
 
   sUi: Subscription = new Subscription();
 
-  constructor(private ui: UiService) {
+  constructor(private ui: UiService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -23,6 +23,10 @@ export class GuildContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sUi.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.cd.detectChanges();
   }
 
 }
