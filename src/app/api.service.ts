@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, take} from "rxjs";
-import {PartialGuild, linkData, wasSuccessful, rawUser, rawPartialGuildsGroup, User} from "./types";
+import {PartialGuild, linkData, wasSuccessful, rawUser, rawPartialGuildsGroup, User, guildSettings, dID} from "./types";
 
 @Injectable({
   providedIn: 'root'
@@ -31,19 +31,19 @@ export class ApiService {
       });
   }
 
-  /* without authentication */
+  /* fetch without authentication */
   getLoginLink(): Observable<linkData> {
-    return this.http.get<linkData>('/api/login_link', {withCredentials: true});
+    return this.http.get<linkData>('/api/login_link');
   }
 
   redeemCode(code: string): void {
-    this.http.get<wasSuccessful>('/api/callback?code=' + code, {withCredentials: true}).pipe(take(1))
+    this.http.get<wasSuccessful>('/api/callback?code=' + code).pipe(take(1))
       .subscribe(data => this.isAuthorized.next(data.successful));
   }
 
-  /* with authentication */
+  /* fetch with authentication */
   private fetchIsAuthenticated(): Observable<wasSuccessful> {
-    return this.http.get<wasSuccessful>('/api/authenticated', {withCredentials: true});
+    return this.http.get<wasSuccessful>('/api/authenticated');
   }
 
   private fetchUserInfo(): Observable<rawUser> {
@@ -51,7 +51,7 @@ export class ApiService {
   }
 
   private fetchUserGuilds(): Observable<rawPartialGuildsGroup> {
-    return this.http.get<rawPartialGuildsGroup>('/api/user/guilds', {withCredentials: true})
+    return this.http.get<rawPartialGuildsGroup>('/api/user/guilds')
   }
 
   isAuthenticated(): Observable<boolean> {
