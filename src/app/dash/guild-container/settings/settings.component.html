@@ -1,1 +1,32 @@
-<p>settings works!</p>
+<div class="h-full overflow-y-scroll hide-scroll">
+  <div class="flex flex-col items-center mx-10 mt-5 bg-cyan-600 gap-10">
+    <p-toast></p-toast>
+    <div class="settings-group">
+      <h2>LFG Channels</h2>
+      <div class="channel-container">
+        <p *ngFor="let channel of guildSettings.channels">#{{ channel.name }}</p>
+
+        <div *ngFor="let channel of guildSettings.channels"
+             class="flex flex-wrap justify-start space-x-1 border-l-2 border-stone-700"
+        >
+          <div *ngFor="let role of channel.roles"
+               [style]="'background-color: ' + role.color"
+               class="flex items-center rounded-full px-2 space-x-1"
+          >
+            <p class="inline">{{ role.name }}</p>
+            <button (click)="deleteRole(channel.id, role.id)">X</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h2>LFG Hosts</h2>
+      <div>
+        <div *ngFor="let role of guildSettings.roles">
+          <p>@{{ role.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,57 @@ export type rawUser = {
   accent_color: number;
 }
 
+export type trustedHost = {
+  id: string;
+  name: string;
+  color: string;
+  cooldown: number;
+  cooldown_type: string;
+}
+
+export type lfgRole = {
+  id: string;
+  name: string;
+  color: string
+}
+
+export type lfgChannel = {
+  id: string;
+  name: string;
+  roles: lfgRole[];
+}
+
+export type guildRole = {
+  id: string;
+  name: string;
+  color: string;
+  emoji: string | null;
+}
+
+export type permittedChannel = {
+  id: string;
+  name: string;
+  position: number;
+}
+
+export type notPermittedChannel = {
+  name: string;
+  reason: string;
+  position: number;
+}
+
+export type guildChannels = {
+  permitted: permittedChannel[];
+  notPermitted: notPermittedChannel[];
+}
+
+export type guildSettings = {
+  roles: trustedHost[];
+  channels: lfgChannel[];
+  guild_roles: guildRole[];
+  guild_channels: guildChannels;
+}
+
 /* Transformed Classes */
 export class PartialGuild {
   id: bigint;
@@ -94,4 +145,5 @@ export class User {
 }
 
 /* other */
-export type subType = 0 | 1 | 2 | 3
+export type subType = 0 | 1 | 2 | 3;
+export type dID = string | bigint;

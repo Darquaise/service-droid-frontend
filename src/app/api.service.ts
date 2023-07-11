@@ -47,12 +47,18 @@ export class ApiService {
   }
 
   private fetchUserInfo(): Observable<rawUser> {
-    return this.http.get<rawUser>('/api/user', {withCredentials: true})
+    return this.http.get<rawUser>('/api/user')
   }
 
   private fetchUserGuilds(): Observable<rawPartialGuildsGroup> {
     return this.http.get<rawPartialGuildsGroup>('/api/user/guilds')
   }
+
+  fetchGuildSettings(guildId: bigint): Observable<guildSettings> {
+    return this.http.get<guildSettings>('/api/guild/' + guildId + '/settings')
+  }
+
+  /* subscriptions */
 
   isAuthenticated(): Observable<boolean> {
     return this.isAuthorized.asObservable();
@@ -68,6 +74,49 @@ export class ApiService {
 
   getOptionalGuilds(): Observable<PartialGuild[]> {
     return this.optionalGuilds.asObservable();
+  }
+
+  /* set settings */
+  addLFGChannel(guildID: dID, channelID: string, roleID: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/add_lfg_channel',{params: {channel_id: channelID, role_id: roleID}}
+    );
+  }
+
+  deleteLFGChannel(guildID: dID, channelID: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/delete_lfg_channel',{params: {channel_id: channelID}}
+    );
+  }
+
+  addLFGRole(guildID: dID, channelID: string, roleID: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/add_lfg_role',{params: {channel_id: channelID, role_id: roleID}}
+    );
+  }
+
+  deleteLFGRole(guildID: dID, channelID: string, roleID: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/delete_lfg_role',{params: {channel_id: channelID, role_id: roleID}}
+    );
+  }
+
+  addHostRole(guildID: dID, roleID: string, cooldown: number, cooldownType: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/add_host_role',{params: {role_id: roleID, cooldown: cooldown, cooldown_type: cooldownType}}
+    );
+  }
+
+  editHostRole(guildID: dID, roleID: string, cooldown: number, cooldownType: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/edit_host_role',{params: {role_id: roleID, cooldown: cooldown, cooldown_type: cooldownType}}
+    );
+  }
+
+  deleteHostRole(guildID: dID, roleID: string) {
+    return this.http.get<wasSuccessful>(
+      '/api/guild/' + guildID + '/delete_host_role',{params: {role_id: roleID}}
+    );
   }
 
 }
