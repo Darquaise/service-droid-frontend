@@ -1,4 +1,7 @@
-<div class="main-container">
+<div *ngIf="APIState < 2" class="main-container">
   <app-header class="header-container"></app-header>
   <router-outlet></router-outlet>
+</div>
+<div *ngIf="APIState >= 2">
+  API currently unavailable
 </div>

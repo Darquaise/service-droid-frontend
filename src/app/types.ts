@@ -1,4 +1,8 @@
 /* Response Types */
+export type status = {
+  status: number;
+}
+
 export type linkData = {
   url: string;
 }
